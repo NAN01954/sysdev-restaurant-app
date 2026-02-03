@@ -5,4 +5,7 @@ instance/
 venv/
 *.db
 .DS_Store
-client_secret.json
+client_secret.json.env
+
+# Environment variables
+.env

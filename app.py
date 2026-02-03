@@ -5,11 +5,15 @@ from sqlalchemy.pool import NullPool
 from google.cloud import datastore
 from google_auth_oauthlib.flow import Flow
 from google.auth.transport.requests import Request
+from dotenv import load_dotenv
 import google.auth
 import os
 from datetime import datetime
 import pathlib
 import secrets
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(32)
@@ -25,7 +29,7 @@ db = datastore.Client()
 # Cloud SQL connection
 CONNECTION_NAME = "sysdev-coursework:us-central1:restaurant-db"
 DB_USER = "postgres"
-DB_PASS = "YOUR_DB_PASSWORD_HERE"
+DB_PASS = os.environ.get('DB_PASSWORD', 'YOUR_DB_PASSWORD_HERE')
 DB_NAME = "restaurant"
 
 # Check if running locally or on App Engine
@@ -36,15 +40,15 @@ if os.environ.get('GAE_ENV', '').startswith('standard'):
         poolclass=NullPool,
     )
 else:
-    DB_HOST = "35.239.32.15"
+    DB_HOST = os.environ.get('DB_HOST', '35.239.32.15')
     engine = create_engine(
         f"postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}",
         poolclass=NullPool,
     )
 
-# NOTE: In production, use Google Secret Manager or environment variables
-GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE"
-GOOGLE_CLIENT_SECRET = "YOUR_CLIENT_SECRET_HERE"
+# Load OAuth credentials from environment variables
+GOOGLE_CLIENT_ID = os.environ.get('GOOGLE_CLIENT_ID', 'YOUR_CLIENT_ID_HERE')
+GOOGLE_CLIENT_SECRET = os.environ.get('GOOGLE_CLIENT_SECRET', 'YOUR_CLIENT_SECRET_HERE')
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
@@ -137,7 +141,7 @@ def order():
         
         total = 0.0
         for item_str in selected_items:
-            price = float(item_str.split('$')[1])
+            price = float(item_str.split('£')[1])
             total += price
         
         order_data = {
