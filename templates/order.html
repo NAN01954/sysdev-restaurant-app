@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Place Your Order</h1>
+
+<form method="POST" class="mt-4">
+    <h4>Select Items:</h4>
+    {% for item in menu_items %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="items" value="{{ item.name }} - ${{ item.price }}" id="item{{ item.id }}">
+        <label class="form-check-label" for="item{{ item.id }}">
+            {{ item.name }} - ${{ "%.2f"|format(item.price) }}
+        </label>
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="btn btn-primary mt-3">Submit Order</button>
+</form>
+{% endblock %}

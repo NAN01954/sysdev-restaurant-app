@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to Restaurant Order System</h1>
+    <p class="lead mt-3">Order delicious food online</p>
+    
+    {% if user %}
+        <p>Hello, {{ user.name }}!</p>
+        <a href="/order" class="btn btn-primary btn-lg mt-3">Place an Order</a>
+    {% else %}
+        <a href="/login" class="btn btn-primary btn-lg mt-3">Login to Order</a>
+    {% endif %}
+    
+    <a href="/menu" class="btn btn-secondary btn-lg mt-3">View Menu</a>
+</div>
+{% endblock %}
