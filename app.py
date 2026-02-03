@@ -25,7 +25,7 @@ db = datastore.Client()
 # Cloud SQL connection
 CONNECTION_NAME = "sysdev-coursework:us-central1:restaurant-db"
 DB_USER = "postgres"
-DB_PASS = "MySecurePass123"
+DB_PASS = "YOUR_DB_PASSWORD_HERE"
 DB_NAME = "restaurant"
 
 # Check if running locally or on App Engine
@@ -43,8 +43,8 @@ else:
     )
 
 # NOTE: In production, use Google Secret Manager or environment variables
-GOOGLE_CLIENT_ID = "992918431782-fmtvsge33tmk4jpmm0g0ob4focbdd04r.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
+GOOGLE_CLIENT_ID = "YOUR_CLIENT_ID_HERE"
+GOOGLE_CLIENT_SECRET = "YOUR_CLIENT_SECRET_HERE"
 
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
