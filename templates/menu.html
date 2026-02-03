@@ -10,7 +10,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
                 <p class="card-text">{{ item.description }}</p>
-                <p class="text-primary fw-bold">${{ "%.2f"|format(item.price) }}</p>
+                <p class="text-primary fw-bold">£{{ "%.2f"|format(item.price) }}</p>
             </div>
         </div>
     </div>

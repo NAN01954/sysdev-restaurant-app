@@ -123,7 +123,7 @@ def order():
         
         total = 0.0
         for item_str in selected_items:
-            price = float(item_str.split('$')[1])
+            price = float(item_str.split('£')[1])
             total += price
         
         order_data = {

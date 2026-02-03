@@ -9,7 +9,7 @@
     <div class="form-check">
         <input class="form-check-input" type="checkbox" name="items" value="{{ item.name }} - ${{ item.price }}" id="item{{ item.id }}">
         <label class="form-check-label" for="item{{ item.id }}">
-            {{ item.name }} - ${{ "%.2f"|format(item.price) }}
+            {{ item.name }} - £{{ "%.2f"|format(item.price) }}
         </label>
     </div>
     {% endfor %}
